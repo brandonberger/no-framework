@@ -1,0 +1,21 @@
+{
+    "name": "No Framework Guide",
+    "description": "Just Following a Quick Tut",
+    "keywords": ["What", "Do", "these", "do"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brandon Berger",
+            "email": "bdonberger@gmail.com",
+            "role": "Dev"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Underground\\": "src/"
+        }
+    }
+}

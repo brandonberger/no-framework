@@ -2,4 +2,5 @@
 
 return [
     ['GET', '/', ['Underground\Controllers\Homepage', 'show']],
+    ['GET', '/{slug}', ['Underground\Controllers\Page', 'show']],
 ];

@@ -1,16 +1,20 @@
 <?php declare(strict_types = 1);
-
+// Namespace for src directory
 namespace Underground;
-
+// Autoloader
 require __DIR__ . '/../vendor/autoload.php';
-
+// Reports all error types
 error_reporting(E_ALL);
 
 $environment = 'development';
 
 /**
  * Register the error handler
+ * @package "filp/whoops": "~2.1"
+ * Error handler, displays an error page
+ * and additional debugging info
  */
+// Initializes the whoops packages class
 $whoops = new \Whoops\Run;
 if ($environment !== 'production') {
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
@@ -21,12 +25,24 @@ if ($environment !== 'production') {
 }
 $whoops->register();
 
+
+/**
+ * Dependency Injector
+ * @package "rdlowrey/auryn":"~1.4.2"
+ * to bootstrap and wire together S.O.L.I.D.,
+ * object-oriented PHP applications.
+ */
 $injector = include('Dependencies.php');
 
-$request = $injector->make('Http\HttpRequest');
+$request  = $injector->make('Http\HttpRequest');
 $response = $injector->make('Http\HttpResponse');
 
-
+// Router callback
+/**
+ * @package "nikic/fast-route":"~1.2"
+ * dispatches to different handlers
+ * depending on rules that you have set up
+ */
 $routeDefinitionCallback = function (\FastRoute\RouteCollector $r) {
     $routes = include('Routes.php');
     foreach ($routes as $route) {
